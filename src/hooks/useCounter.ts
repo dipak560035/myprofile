@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 export function useCounter(target: number, duration = 1500) {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const started = useRef(false);
 
   useEffect(() => {
@@ -14,15 +14,21 @@ export function useCounter(target: number, duration = 1500) {
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
+
           const startTime = performance.now();
+
           const step = (currentTime: number) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
+
             const eased = 1 - Math.pow(1 - progress, 3);
+
             setCount(Math.floor(eased * target));
+
             if (progress < 1) requestAnimationFrame(step);
             else setCount(target);
           };
+
           requestAnimationFrame(step);
           observer.unobserve(el);
         }

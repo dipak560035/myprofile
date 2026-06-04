@@ -1,12 +1,6 @@
 "use client";
 import { personalInfo, socialLinks } from "@/data";
 
-export default function HeroSection() {
-  const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-        >
-          ▶ Available for opportunities
         </div>
 
 

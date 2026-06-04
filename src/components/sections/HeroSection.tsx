@@ -10,11 +10,6 @@ export default function HeroSection() {
         </div>
 
         {/* Name */}
-        <h1
-          className="font-syne font-black leading-[0.95] mb-4"
-          style={{
-            fontSize: "clamp(3rem,8vw,7rem)",
-            animation: "fadeUp 0.8s 0.7s forwards",
             opacity: 0,
           }}
         >

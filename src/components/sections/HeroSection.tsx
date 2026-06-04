@@ -9,13 +9,6 @@ export default function HeroSection() {
           ▶ Available for opportunities
         </div>
 
-        {/* Name */}
-            opacity: 0,
-          }}
-        >
-          <span className="block text-[var(--text)]">DIPAK</span>
-          <span className="block gradient-text">SAH.</span>
-        </h1>
 
         {/* Typing title */}
         <div

@@ -8,11 +8,6 @@ export default function HeroSection() {
 
   return (
     <section
-      id="hero"
-      className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 md:px-12"
-    >
-      <div className="max-w-5xl mx-auto w-full relative z-[2]">
-        {/* Eyebrow */}
         <div
           className="font-mono text-[0.8rem] tracking-[0.3em] text-[var(--accent)] uppercase mb-6"
           style={{ animation: "fadeUp 0.8s 0.5s forwards", opacity: 0 }}

@@ -5,12 +5,6 @@ export default function HeroSection() {
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
-
-  return (
-    <section
-        <div
-          className="font-mono text-[0.8rem] tracking-[0.3em] text-[var(--accent)] uppercase mb-6"
-          style={{ animation: "fadeUp 0.8s 0.5s forwards", opacity: 0 }}
         >
           ▶ Available for opportunities
         </div>

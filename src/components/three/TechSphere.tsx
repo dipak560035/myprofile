@@ -1,7 +1,4 @@
-"use c"use client";
-import { useRef, useState } from "react";
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
-import { Text } from "@rea"use client";
+"use client";
 import { useRef, useState } from "react";
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
@@ -72,6 +69,69 @@ function SpherePoints({ isDragging }: { isDragging: boolean }) {
       {points.map((pos, i) => {
         const linePoints = [new THREE.Vector3(0, 0, 0), pos];
         const geo = new THREE.BufferGeometry().setFromPoints(linePoints);
+        return (
+          <line key={`line-${i}`} geometry={geo}>
+            <lineBasicMaterial color={COLORS[i % COLORS.length]} transparent opacity={0.08} />
+          </line>
+        );
+      })}
+    </group>
+  );
+}
+
+function Scene() {
+  const [isDragging, setIsDragging] = useState(false);
+  const [prevMouse, setPrevMouse] = useState({ x: 0, y: 0 });
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const groupRef = useRef<THREE.Group>(null);
+
+  const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
+    setIsDragging(true);
+    setPrevMouse({ x: e.clientX, y: e.clientY });
+  };
+
+  const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevMouse.x;
+    const dy = e.clientY - prevMouse.y;
+    setRotation((r) => ({ x: r.x + dy * 0.01, y: r.y + dx * 0.01 }));
+    setPrevMouse({ x: e.clientX, y: e.clientY });
+    if (groupRef.current) {
+      groupRef.current.rotation.x = rotation.x;
+      groupRef.current.rotation.y = rotation.y;
+    }
+  };
+
+  return (
+    <group
+      ref={groupRef}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={() => setIsDragging(false)}
+      onPointerLeave={() => setIsDragging(false)}
+    >
+      <SpherePoints isDragging={isDragging} />
+    </group>
+  );
+}
+
+export default function TechSphere() {
+  return (
+    <div className="relative h-[400px] border border-white/5 bg-dark2 cursor-grab active:cursor-grabbing overflow-hidden">
+      <div className="absolute top-3 left-3 font-mono text-[0.65rem] text-[var(--muted)] tracking-[0.15em] uppercase z-10 pointer-events-none">
+        Tech Sphere — Drag to Rotate
+      </div>
+      <div className="absolute bottom-3 right-3 font-mono text-[0.65rem] text-[var(--muted)] tracking-[0.1em] opacity-50 z-10 pointer-events-none">
+        Interactive 3D
+      </div>
+      <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
+        <Scene />
+      </Canvas>
+    </div>
+  );
+}erGeometry().setFromPoints(linePoints);
         return (
           <line key={`line-${i}`} geometry={geo}>
             <lineBasicMaterial color={COLORS[i % COLORS.length]} transparent opacity={0.08} />

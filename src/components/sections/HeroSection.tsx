@@ -4,15 +4,6 @@ import { personalInfo, so9rem,2vw,1.2rem)",
             opacity: 0,
           }}
         >
-          <span className="typing-text">{personalInfo.title}</span>
-        </div>
-
-        {/* Description */}
-        <p
-          className="text-[rgba(232,232,240,0.6)] max-w-[550px] leading-[1.7] mb-12 text-base md:text-lg"
-          style={{ animation: "fadeUp 0.8s 1.1s forwards", opacity: 0 }}
-        >
-          {personalInfo.tagline}
         </p>
 
         {/* CTA Buttons */}

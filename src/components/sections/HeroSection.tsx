@@ -1,14 +1,5 @@
 "use client";
-import { personalInfo, socialLinks } from "@/data";
-
-        </div>
-
-
-        {/* Typing title */}
-        <div
-          className="font-mono mb-6 text-[var(--muted)]"
-          style={{
-            fontSize: "clamp(0.9rem,2vw,1.2rem)",
+import { personalInfo, so9rem,2vw,1.2rem)",
             animation: "fadeUp 0.8s 0.9s forwards",
             opacity: 0,
           }}
